@@ -1,1 +1,49 @@
 
+import java.util.Scanner;
+
+public class Calculator {
+
+    double a, b;
+    String operation;
+
+    public Calculator(double a, double b, String operation) {
+        this.a = a;
+        this.b = b;
+        this.operation = operation.toLowerCase();
+    }
+
+    public double calculate() {
+        if (operation.equals("add") || operation.equals("+")) {
+            return a + b;
+        } else if (operation.equals("subtract") || operation.equals("-")) {
+            return a - b;
+        } else if (operation.equals("multiply") || operation.equals("*")) {
+            return a * b;
+        } else if (operation.equals("divide") || operation.equals("/")) {
+            if (b != 0) return a / b;
+            else {
+                System.out.println("Cannot divide by zero.");
+                return Double.NaN;
+            }
+        } else {
+            System.out.println("Invalid operation.");
+            return Double.NaN;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a: ");
+        double a = sc.nextDouble();
+
+        System.out.print("Enter b: ");
+        double b = sc.nextDouble();
+
+        System.out.print("Enter operation (add, subtract, multiply, divide or + - * /): ");
+        String op = sc.next();
+
+        Calculator calc = new Calculator(a, b, op);
+        System.out.println("Result: " + calc.calculate());
+        sc.close();
+    }
+}
